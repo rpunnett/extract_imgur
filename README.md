@@ -13,10 +13,10 @@ Example URL: http://imgur.com/4Bpn7iO
 Imgur::valid($url); 
 
 #Returns the ID of the image : 4Bpn7iO
-Imgur::getId($object['url']); 
+Imgur::getId($url); 
 
 #Returns the TYPE of the link -> Album, Gallery, Hash, Image
-Imgur::getType($object['url']); 
+Imgur::getType($url); 
 
 #Returns either the image URL, or an array of URLS depending on TYPE
 Imgur::getImage($url,'original');
