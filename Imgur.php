@@ -1,4 +1,16 @@
 <?php
+/**
+ * Built by: rpunnett
+ * Url: https://github.com/rpunnett/extract_imgur
+ * License: MIT
+ * Requirements: cURL, Guzzle
+ *
+ *
+ * Based on work by: hortinstein
+ * Project: impurge
+ * Use: JS Client to extract imgur links
+ * Url: https://github.com/hortinstein/impurge
+ */
 use GuzzleHttp\Client;
 
 class Imgur extends Image {
