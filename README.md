@@ -45,7 +45,14 @@ extract_imgur has the following requirements:
 * [PHP] - Version 5.*
 
 
-Installation
+Preferred Installation
+--------------
+
+Use packagist.
+https://packagist.org/packages/rpunnett/extract_imgur
+
+
+Normal Installation
 --------------
 Copy to a project directory and include the class.
 
