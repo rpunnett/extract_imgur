@@ -1,7 +1,7 @@
 extract_imgur
 =========
 
-extract_imgur is php class to pull out the actual image URL's from imgur links. It is based the the JS project 'impurge'.
+extract_imgur is php class to pull out the actual image URL's from imgur links. It is based the the JS project '[impurge]'.
 
 
 Usage
@@ -75,3 +75,4 @@ MIT
 [guzzle]:http://guzzle.readthedocs.org/en/latest/
 [cURL]:http://curl.haxx.se/
 [PHP]:http://php.net/
+[impurge]:https://github.com/hortinstein/impurge
