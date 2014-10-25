@@ -13,9 +13,9 @@
  */
 use GuzzleHttp\Client;
 
-class Imgur extends Image {
+class Imgur {
 
-	
+	protected static $header_user_agent = 'extract_imgur';
 
 	public static function valid ($url){
 
