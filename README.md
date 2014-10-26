@@ -59,6 +59,8 @@ To Do
 ----
 
 * Remove most static classes
+* Regex may currently break on ID
+* Update to API v3
 * Improve error handling
 * Add callback capability 
 
