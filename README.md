@@ -57,12 +57,11 @@ cp Imgur.php <include path>
 To Do
 ----
 
-* Remove most static classes
+* Migrate from static classes
 * Regex may currently break on ID
-* Update to API v3
+* Allow option to use API V3
 * Improve error handling
 * Add callback capability 
-
 
 
 License
