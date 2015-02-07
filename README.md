@@ -33,7 +33,7 @@ url :	http://imgur.com/4Bpn7iO
 Version
 ----
 
-0.25
+0.35
 
 Requirements
 -----------
@@ -61,14 +61,6 @@ git clone https://github.com/rpunnett/extract_imgur.git extract_imgur
 cd extract_imgur
 cp Imgur.php <include path>
 ```
-
-To Do
-----
-
-* Remove most static classes
-* Improve error handling
-* Add callback capability 
-
 
 
 License
