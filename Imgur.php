@@ -20,15 +20,12 @@ class Imgur {
 	public static function valid ($url){
 
 
-		if(preg_match("^https?://((www)|(i)\.)?imgur.com/[./a-zA-Z0-9&,]+^", $url, $matches, null, 0))
-		{
-			return true;
-		}
-		else
+		if(!preg_match("^https?://((www)|(i)\.)?imgur.com/[./a-zA-Z0-9&,]+^", $url, $matches, null, 0))
 		{
 			return false;
-		} 
+		}
 
+		return true;
 	}
 
 	public static function getType ($url){
@@ -45,7 +42,7 @@ class Imgur {
 		        return 'image';
 		        break;
 		    case (preg_match('^imgur\.com/(([a-zA-Z0-9]{5,7}[&,]?)+)^', $url) ? true : false) :
-		        return 'hash';
+		        return 'image'; //Hash
 		        break;
 		     default:
 		     	return false;
@@ -63,42 +60,34 @@ class Imgur {
 
 	public static function getJSON($url){
 
-		if(Imgur::valid($url))
-		{
-			if(Imgur::getType($url) == 'image' || Imgur::getType($url) == 'hash')
-			{
-				$type = 'image';
-			}
-			else
-			{
-				$type = 'album';
-			}
-
-			try
-			{
-				$imgur_api_request = new Client([
-				    'base_url' => ['http://api.imgur.com/2/{type}/{id}.json', ['type' => $type,'id' => Imgur::getId($url)]],
-					    'defaults' => [
-					        'headers' => ['User-Agent' => self::$header_user_agent]
-					    ]
-				]);
-			}
-			catch (Guzzle\Http\Exception\BadResponseException $e) 
-			{
- 				return $e->getMessage();
-			}
-
-			$response = $imgur_api_request->get();
-
-			return $response->json(); 
-		}	
-		else
+		if(!Imgur::valid($url))
 		{
 			return false;
 		}
+		
+		try
+		{
+			$imgur_api_request = Imgur::connectToGuzzle(Imgur::getType($url) , Imgur::getId($url) )
+		}
+		catch (Guzzle\Http\Exception\BadResponseException $e) 
+		{
+				return $e->getMessage();
+		}
+
+		$response = $imgur_api_request->get();
+
+		return $response->json(); 
+			
 	}
 
-
+	private static function connectToGuzzle($type, $id) {
+		return new Client([
+			    'base_url' => ['http://api.imgur.com/2/{type}/{id}.json', ['type' => $type,'id' => $id]],
+				    'defaults' => [
+				        'headers' => ['User-Agent' => self::$header_user_agent]
+				    ]
+				]);
+	}
 
 	private static function retrieveImage($json, $imgur_type_requested) {
 
@@ -109,28 +98,27 @@ class Imgur {
 	private static function retrieveAlbum($json, $imgur_type_requested) {
 
 		$images = count($json['album']['images']);
-		$return =  array();
+		$albumArray = array();
 
 		for ($x=0; $x<$images; $x++) {
 		 	array_push($return,$json['album']['images'][$x]['links'][$imgur_type_requested]);
 		} 
-		return $return;
+
+		return $albumArray;
 
 	}
 
 	public static function getImage($url,$imgur_type_requested){
 
-	 $json = Imgur::getJSON($url);
+		$json = Imgur::getJSON($url);
 
 		if(isset($json['image']))
 		{
 			return Imgur::retrieveImage($json, $imgur_type_requested);
 		}
-		else if(isset($json['album']))
-		{
-			return Imgur::retrieveAlbum($json, $imgur_type_requested);
-		}
 
+		return Imgur::retrieveAlbum($json, $imgur_type_requested);
+		
 	}
 
 }
