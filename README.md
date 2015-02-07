@@ -33,7 +33,7 @@ url :	http://imgur.com/4Bpn7iO
 Version
 ----
 
-0.25
+0.35
 
 Requirements
 -----------
@@ -54,15 +54,6 @@ git clone https://github.com/rpunnett/extract_imgur.git extract_imgur
 cd extract_imgur
 cp Imgur.php <include path>
 ```
-
-To Do
-----
-
-* Migrate from static classes
-* Regex may currently break on ID
-* Allow option to use API V3
-* Improve error handling
-* Add callback capability 
 
 
 License
