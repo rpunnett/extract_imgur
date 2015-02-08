@@ -60,12 +60,12 @@ https://packagist.org/packages/rpunnett/extract_imgur
 
 Normal Installation
 --------------
-Copy to a project directory and include the class.
+Copy to a project directory and include the namespace 'punnettr\ImageHost\Imgur'
 
 ```sh
 git clone https://github.com/rpunnett/extract_imgur.git extract_imgur
 cd extract_imgur
-cp Imgur.php <include path>
+cp punnettr <include path>
 ```
 
 
