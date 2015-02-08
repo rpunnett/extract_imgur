@@ -1,7 +1,7 @@
 {
     "name": "rpunnett/extract_imgur",
     "type": "library",
-    "description": "A small class to extract image links from imgur URLS in PHP",
+    "description": "A class to extract image links from imgur URLS in PHP",
     "keywords": ["imgur","api","image"],
     "homepage": "https://github.com/rpunnett/extract_imgur",
     "license": "MIT",
@@ -14,8 +14,7 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "guzzlehttp/guzzle": "~5.0"
+        "php": ">=5.4.0"
     }
     
 }
