@@ -6,8 +6,9 @@ extract_imgur is php class to pull out the actual image URL's from imgur links. 
 
 Usage
 ----
-Example URL: http://imgur.com/4Bpn7iO
 ```php
+
+$url = 'http://imgur.com/4Bpn7iO'
 
 #Checks if the link is from inmgur, returns true false : TRUE
 Imgur::valid($url); 
@@ -15,10 +16,16 @@ Imgur::valid($url);
 #Returns the ID of the image : 4Bpn7iO
 Imgur::getId($url); 
 
-#Returns the TYPE of the link -> Album, Gallery, Hash, Image
+#Returns the TYPE of the link -> Album, Gallery, Hash, Image : Image
 Imgur::getType($url); 
 
-#Returns either the image URL, or an array of URLS depending on TYPE
+#Returns an array of URLs based on requested type
+Type Options:
+* original
+* imgur_page
+* small_square
+* large_thumbnail
+
 Imgur::getImage($url,'original');
 /*
 url		[3]
@@ -40,7 +47,6 @@ Requirements
 
 extract_imgur has the following requirements:
 
-* [Guzzle] - A PHP Client for consuming web services
 * [cURL] - Reads interwebs
 * [PHP] - Version 5.*
 
@@ -71,7 +77,6 @@ MIT
 
 
 [robert punnett]:https://github.com/rpunnett
-[guzzle]:http://guzzle.readthedocs.org/en/latest/
 [cURL]:http://curl.haxx.se/
 [PHP]:http://php.net/
 [impurge]:https://github.com/hortinstein/impurge
