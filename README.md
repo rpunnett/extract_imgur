@@ -53,6 +53,10 @@ extract_imgur has the following requirements:
 * [PHP] - Version 5.*
 
 
+Preferred Installation
+--------------
+Use Composer: https://packagist.org/packages/rpunnett/extract_imgur
+
 Normal Installation
 --------------
 Copy to a project directory and include the namespace 'punnettr\ImageHost\Imgur'
