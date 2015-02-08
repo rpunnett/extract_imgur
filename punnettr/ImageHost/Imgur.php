@@ -1,4 +1,4 @@
-<?php
+<?php  namespace punnettr\ImageHost;
 /**
  * Built by: rpunnett
  * Url: https://github.com/rpunnett/extract_imgur
@@ -11,9 +11,11 @@
  * Use: JS Client to extract imgur links
  * Url: https://github.com/hortinstein/impurge
  */
-use GuzzleHttp\Client;
 
-class Imgur {
+use punnettr\ImageHost\ImageHostInterface;
+
+
+class Imgur implements ImageHostInterface {
 
 	protected static $header_user_agent = 'extract_imgur';
 
@@ -64,60 +66,72 @@ class Imgur {
 		{
 			return false;
 		}
-		
-		try
-		{
-			$imgur_api_request = Imgur::connectToGuzzle(Imgur::getType($url) , Imgur::getId($url) )
-		}
-		catch (Guzzle\Http\Exception\BadResponseException $e) 
-		{
-				return $e->getMessage();
-		}
 
-		$response = $imgur_api_request->get();
-
-		return $response->json(); 
+		return self::connectToCurl(self::getType($url),self::getId($url));
 			
 	}
 
-	private static function connectToGuzzle($type, $id) {
-		return new Client([
-			    'base_url' => ['http://api.imgur.com/2/{type}/{id}.json', ['type' => $type,'id' => $id]],
-				    'defaults' => [
-				        'headers' => ['User-Agent' => self::$header_user_agent]
-				    ]
-				]);
+
+	private static function connectToCurl($type, $id){
+
+        $cURL_IMGUR = curl_init();
+        curl_setopt($cURL_IMGUR, CURLOPT_URL, "http://api.imgur.com/2/".$type."/".$id.".json");
+        curl_setopt($cURL_IMGUR, CURLOPT_RETURNTRANSFER, 1);
+        $cURL_Result = curl_exec($cURL_IMGUR);
+
+        if ($cURL_Result === FALSE) 
+		{
+			throw new Exception("Unable to retrieve output from Imgur API V2");
+		}
+
+        curl_close($cURL_IMGUR);      
+
+        return self::decodeJSONString($cURL_Result);
+	} 
+
+
+	private static function decodeJSONString($string){
+
+		return json_decode($string);
 	}
 
-	private static function retrieveImage($json, $imgur_type_requested) {
+	private static function encodeJSONString($string){
 
-		return $json['image']['links'][$imgur_type_requested];
+		return json_encode($string);
+	}
+
+
+	private static function retrieveImage($json, $type_requested) {
+
+		$imageArray = array();
+		array_push($imageArray,$json->image->links->$type_requested);
+		return $imageArray;
 
 	}
 
-	private static function retrieveAlbum($json, $imgur_type_requested) {
+	private static function retrieveAlbum($json, $type_requested) {
 
-		$images = count($json['album']['images']);
+		$images = count($json->album->images);
 		$albumArray = array();
 
 		for ($x=0; $x<$images; $x++) {
-		 	array_push($return,$json['album']['images'][$x]['links'][$imgur_type_requested]);
+		 	array_push($albumArray,$json->album->images[$x]->links->$type_requested);
 		} 
 
 		return $albumArray;
 
 	}
 
-	public static function getImage($url,$imgur_type_requested){
+	public static function getImage($url,$type_requested = 'original'){
 
-		$json = Imgur::getJSON($url);
-
-		if(isset($json['image']))
+		$json = self::getJSON($url);
+		//return gettype($json);
+		if(isset($json->image))
 		{
-			return Imgur::retrieveImage($json, $imgur_type_requested);
+			return self::retrieveImage($json, $type_requested);
 		}
 
-		return Imgur::retrieveAlbum($json, $imgur_type_requested);
+		return self::retrieveAlbum($json, $type_requested);
 		
 	}
 
