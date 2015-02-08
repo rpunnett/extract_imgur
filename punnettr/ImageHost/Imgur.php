@@ -3,7 +3,7 @@
  * Built by: rpunnett
  * Url: https://github.com/rpunnett/extract_imgur
  * License: MIT
- * Requirements: cURL, Guzzle
+ * Requirements: cURL
  *
  *
  * Based on work by: hortinstein
