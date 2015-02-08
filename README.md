@@ -7,6 +7,7 @@ extract_imgur is php class to pull out the actual image URL's from imgur links. 
 Usage
 ----
 ```php
+use  punnettr\ImageHost\Imgur;
 
 $url = 'http://imgur.com/4Bpn7iO'
 
