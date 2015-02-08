@@ -50,7 +50,6 @@ Requirements
 extract_imgur has the following requirements:
 
 * [cURL] - Reads interwebs
-* [Guzzle] - A PHP Client for consuming web services
 * [PHP] - Version 5.*
 
 
