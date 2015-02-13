@@ -14,7 +14,7 @@
         }
     ],
     "autoload": {
-        "psr-0": { "Imgur\\": "punnettr/ImageHost/" }
+        "psr-4": { "Imgur\\": "punnettr/ImageHost/" }
     },
     "require": {
         "php": ">=5.4.0",
