@@ -12,7 +12,8 @@
             "homepage": "https://github.com/rpunnett/extract_imgur",
             "role": "Developer"
         }
-    ]"autoload": {
+    ],
+    "autoload": {
         "psr-0": { "Imgur\\": "punnettr/ImageHost/" }
     },
     "require": {
