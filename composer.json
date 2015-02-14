@@ -20,10 +20,5 @@
         "php": ">=5.4.0",
         "ext-curl": "*"
 
-    },
-	"extra": {
-		"branch-alias": {
-			"dev-master": "1.0-dev"
-		}
     }
 }
