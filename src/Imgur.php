@@ -1,4 +1,4 @@
-<?php  namespace punnettr\ImageHost;
+<?php  namespace Imgur;
 /**
  * Built by: rpunnett
  * Url: https://github.com/rpunnett/extract_imgur
@@ -12,10 +12,10 @@
  * Url: https://github.com/hortinstein/impurge
  */
 
-use punnettr\ImageHost\ImageHostInterface;
 
 
-class Imgur implements ImageHostInterface {
+
+class Imgur {
 
 	protected static $header_user_agent = 'extract_imgur';
 
