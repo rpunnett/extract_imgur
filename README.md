@@ -7,7 +7,7 @@ extract_imgur is php class to pull out the actual image URL's from imgur links. 
 Usage
 ----
 ```php
-use  punnettr\ImageHost\Imgur;
+use  Imgur\Imgur;
 
 $url = 'http://imgur.com/4Bpn7iO'
 
@@ -59,12 +59,12 @@ Use Composer: https://packagist.org/packages/rpunnett/extract_imgur
 
 Normal Installation
 --------------
-Copy to a project directory and include the namespace 'punnettr\ImageHost\Imgur'
+Copy to a project directory and include the namespace 'Imgur\Imgur'
 
 ```sh
 git clone https://github.com/rpunnett/extract_imgur.git extract_imgur
-cd extract_imgur
-cp punnettr <include path>
+cd extract_imgur-<version>
+cp src <include path>
 ```
 
 
