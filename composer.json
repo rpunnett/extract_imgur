@@ -21,6 +21,10 @@
         "ext-curl": "*"
 
     },
+	
+    "require-dev": {
+        "phpspec/phpspec": "~2.0"
+    },
 	"extra": {
 		"branch-alias": {
 			"dev-development": "1.0-dev"
