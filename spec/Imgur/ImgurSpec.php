@@ -10,7 +10,7 @@ class ImgurSpec extends ObjectBehavior
 
     private $imgurImage = 'http://imgur.com/4Bpn7iO';
     private $imgurAlbum = 'https://imgur.com/a/PBvK0';
-    private $imgurGallery = 'https://imgur.com/gallery/xJsfG';
+    private $imgurGallery = 'https://imgur.com/gallery/PZglF';
     private $badLink = 'http://www.youtube.com/imgur/3846';
 
     /**
@@ -50,7 +50,7 @@ class ImgurSpec extends ObjectBehavior
 
     function it_returns_gallery_for_image_type()
     {
-        $this->getType($this->imgurGallery)->shouldReturn('gallery');
+        $this->getType($this->imgurGallery)->shouldReturn('album');
     }
 
     function it_returns_false_for_image_type()
@@ -67,14 +67,30 @@ class ImgurSpec extends ObjectBehavior
         $this->getID($this->imgurImage)->shouldReturn('4Bpn7iO');
     }
 
-    //Will fail bad link validation currently on getID
-    /*
-    function it_returns_4Bpn7iO_for_image_id()
+  
+    function it_returns_false_for_image_id()
     {
         $this->getID($this->badLink)->shouldReturn(false);
     }
-    */
+    
 
-    //Add specs for getImage (crrently needs error validation)
+
+    /**
+    * Imgur Get Image(s)
+    **/
+    function it_returns_single_array_for_image_array()
+    {
+        $this->getImage($this->imgurImage)->shouldHaveCount(1);
+    }
+
+    function it_returns_multiple_array_for_image_array()
+    {
+        $this->getImage($this->imgurGallery)->shouldHaveCount(20);
+    }
+
+    function it_returns_false_for_image_array()
+    {
+        $this->getImage($this->badLink)->shouldReturn(false);
+    }
 
 }

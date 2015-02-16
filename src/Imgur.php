@@ -38,7 +38,7 @@ class Imgur {
 		        return 'album';
 		        break;
 		   	case (preg_match('^https?://(?:www\.)?imgur\.com/gallery/([a-zA-Z0-9]+)^', $url) ? true : false) :
-		        return 'gallery';
+		        return 'album'; //Gallery
 		        break;
 		   	case (preg_match('^https?://(www\.)?(i\.)?imgur\.com/.{3,7}\.((jpg)|(gif)|(png))^', $url) ? true : false) :
 		        return 'image';
@@ -55,17 +55,19 @@ class Imgur {
 
 	public static function getId($url){
 
-		preg_match('^(?<=\/)((?!imgur))[a-zA-Z0-9]{3,7}^', $url, $matches);
+		if(self::valid($url) == false)
+		{
+			return false;
+		}
+
+		preg_match('/(?<=\\/)((?!imgur))((?!gallery))[a-zA-Z0-9]{3,7}/i', $url, $matches);
+		
 		return $matches[0];
 
 	}
 
-	public static function getJSON($url){
 
-		if(!Imgur::valid($url))
-		{
-			return false;
-		}
+	public static function getJSON($url){
 
 		return self::connectToCurl(self::getType($url),self::getId($url));
 			
@@ -112,6 +114,7 @@ class Imgur {
 	private static function retrieveAlbum($json, $type_requested) {
 
 		$images = count($json->album->images);
+
 		$albumArray = array();
 
 		for ($x=0; $x<$images; $x++) {
@@ -124,8 +127,13 @@ class Imgur {
 
 	public static function getImage($url,$type_requested = 'original'){
 
+		if(self::valid($url) == false)
+		{
+			return false;
+		}
+
 		$json = self::getJSON($url);
-		//return gettype($json);
+
 		if(isset($json->image))
 		{
 			return self::retrieveImage($json, $type_requested);
