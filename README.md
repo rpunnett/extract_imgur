@@ -11,7 +11,7 @@ use  Imgur\Imgur;
 
 $url = 'http://imgur.com/4Bpn7iO'
 
-#Checks if the link is from inmgur, returns true false : TRUE
+#Checks if the link is from imgur, returns true false : TRUE
 Imgur::valid($url); 
 
 #Returns the ID of the image : 4Bpn7iO
@@ -28,12 +28,12 @@ Type Options:
 * large_thumbnail
 
 Imgur::getImage($url,'original');
-/*
+/* For a gallery
 url		[3]
 0   :   http://i.imgur.com/x3Opkpv.jpg
 1   :   http://i.imgur.com/oXLVTyT.jpg
 2   :	http://i.imgur.com/1cbsAEZ.jpg
----
+--- For an image
 url [1]
 0   :	http://imgur.com/4Bpn7iO
 */
