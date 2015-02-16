@@ -51,7 +51,6 @@ extract_imgur has the following requirements:
 
 * [cURL] - Reads interwebs
 * [PHP] - Version 5.*
-* 
 
 Dev Requirements
 -----------
