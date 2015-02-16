@@ -51,7 +51,11 @@ extract_imgur has the following requirements:
 
 * [cURL] - Reads interwebs
 * [PHP] - Version 5.*
+* 
 
+Dev Requirements
+-----------
+* [PHPSpec] - Version ~2.*
 
 Preferred Installation
 --------------
@@ -79,3 +83,4 @@ MIT
 [cURL]:http://curl.haxx.se/
 [PHP]:http://php.net/
 [impurge]:https://github.com/hortinstein/impurge
+[PHPSpec]:http://www.phpspec.net
